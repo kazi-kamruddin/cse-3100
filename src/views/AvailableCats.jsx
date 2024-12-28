@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import './AvailableCats.css';
+import './availableCats.css';
 
 const availableCats = [
   { name: 'Whiskers', age: '2', breed: 'Sphynx' },
@@ -144,6 +144,12 @@ export default function AvailableCats() {
                   <h3 className="h5 mb-1">{cat.name}</h3>
                   <p className="mb-0">Age: {cat.age}</p>
                   <p className="mb-0">Breed: {cat.breed}</p>
+                  <button
+                      className="btn btn-primary mt-2"
+                      onClick={() => handleAdoptClick(cat)}
+                    >
+                      Adopt Now
+                    </button>
                 </div>
               </div>
             </div>
