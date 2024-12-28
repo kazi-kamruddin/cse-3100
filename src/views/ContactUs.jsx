@@ -34,7 +34,7 @@ export default function ContactUs() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validateForm()) {
-      console.log(formData); // Display form data in the console
+      console.log(formData); 
     }
   };
 

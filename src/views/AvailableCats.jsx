@@ -22,6 +22,7 @@ export default function AvailableCats() {
   const [filteredCats, setFilteredCats] = useState([]);
   const [breedFilter, setBreedFilter] = useState('');
   const [nameSearch, setNameSearch] = useState('');
+  const [loading, setLoading] = useState(true); 
 
   useEffect(() => {
     const fetchCatImages = async () => {
@@ -38,8 +39,10 @@ export default function AvailableCats() {
 
         setCats(catsWithImages);
         setFilteredCats(catsWithImages); 
+        setLoading(false);
       } catch (error) {
         console.error('Error fetching cat images:', error);
+        setLoading(false); 
       }
     };
 
@@ -83,7 +86,7 @@ export default function AvailableCats() {
           <h2>Available Cats</h2>
           <p>Meet our adorable cats looking for their forever home!</p>
         </div>
-        <div className="filters align-items-center" id='filters'>
+        <div className="filters align-items-center" id="filters">
           <div className="me-3">
             <label htmlFor="breed-filter" className="form-label">
               Filter by Breed:
@@ -118,31 +121,37 @@ export default function AvailableCats() {
         </div>
       </div>
 
-      <div className="mt-2 row g-4 cats-container" id="cats-container">
-        {filteredCats.map((cat, i) => (
-          <div key={i} className="col-md-4">
-            <div className="cat-card">
-              <img
-                src={cat.image}
-                alt={cat.name}
-                className="img-fluid mb-2"
-                style={{
-                  borderRadius: '8px',
-                  height: '200px',
-                  objectFit: 'cover',
-                }}
-              />
-              <div className="cat-info">
-                <h3 className="h5 mb-1">{cat.name}</h3>
-                <p className="mb-0">Age: {cat.age}</p>
-                <p className="mb-0">Breed: {cat.breed}</p>
+      {loading ? (
+        <div className="loading-message">
+          <p>Loading list of cats, please wait...</p>
+        </div>
+      ) : (
+        <div className="mt-2 row g-4 cats-container" id="cats-container">
+          {filteredCats.map((cat, i) => (
+            <div key={i} className="col-md-4">
+              <div className="cat-card">
+                <img
+                  src={cat.image}
+                  alt={cat.name}
+                  className="img-fluid mb-2"
+                  style={{
+                    borderRadius: '8px',
+                    height: '200px',
+                    objectFit: 'cover',
+                  }}
+                />
+                <div className="cat-info">
+                  <h3 className="h5 mb-1">{cat.name}</h3>
+                  <p className="mb-0">Age: {cat.age}</p>
+                  <p className="mb-0">Breed: {cat.breed}</p>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
 
-      {filteredCats.length === 0 && (
+      {filteredCats.length === 0 && !loading && (
         <p className="mt-4 text-muted">No cats found matching the filters.</p>
       )}
     </section>
