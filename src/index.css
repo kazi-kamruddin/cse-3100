@@ -18,15 +18,41 @@ footer {
 }
 
 .cat-card {
-  border: 1px solid #ddd;
+  border: 1px solid #838383;
+  border-radius: 12px;
+  overflow: hidden;
   text-align: center;
-  height: 250px;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cat-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+.cat-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
 }
 
 .cat-info {
-  background: #f8f9fa;
-  border-radius: 4px;
+  padding: 16px;
+  background-color: #f8f9fa;
+}
+
+.cat-info h3 {
+  font-size: 1.25rem;
+  color: #333;
+}
+
+.cat-info p {
+  font-size: 0.95rem;
+  color: #666;
 }
